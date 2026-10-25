@@ -76,7 +76,7 @@ def extract_table(table_name: str) -> None:
         writer.writerow(columns)
         writer.writerows(rows)
 
-        csv_data = buffer.getvalue().encode("utf-8-sig")
+        csv_data = buffer.getvalue().encode("utf-8")
         buffer.close()
 
         # 6. Criar o caminho do arquivo com data e hora UTC
@@ -114,7 +114,89 @@ def extract_table(table_name: str) -> None:
         raise
 
 
-# 1. AVALIAÇÃO CSAT
+# 1. CHAMADO
+
+
+@app.timer_trigger(
+    schedule="0 * * * * *",
+    arg_name="myTimer",
+    run_on_startup=False,
+    use_monitor=False,
+)
+def extract_chamado(myTimer: func.TimerRequest) -> None:
+    extract_table("chamado")
+
+
+# 2. CHAMADO SLA
+
+
+@app.timer_trigger(
+    schedule="0 * * * * *",
+    arg_name="myTimer",
+    run_on_startup=False,
+    use_monitor=False,
+)
+def extract_chamado_sla(myTimer: func.TimerRequest) -> None:
+    extract_table("chamado_sla")
+
+
+# 3. HISTÓRICO DE STATUS DO CHAMADO
+
+
+@app.timer_trigger(
+    schedule="0 * * * * *",
+    arg_name="myTimer",
+    run_on_startup=False,
+    use_monitor=False,
+)
+def extract_chamado_status_historico(
+    myTimer: func.TimerRequest,
+) -> None:
+    extract_table("chamado_status_historico")
+
+
+# 4. CLIENTE ORGANIZAÇÃO
+
+
+@app.timer_trigger(
+    schedule="0 * * * * *",
+    arg_name="myTimer",
+    run_on_startup=False,
+    use_monitor=False,
+)
+def extract_cliente_organizacao(
+    myTimer: func.TimerRequest,
+) -> None:
+    extract_table("cliente_organizacao")
+
+
+# 5. ANALISTA
+
+
+@app.timer_trigger(
+    schedule="0 * * * * *",
+    arg_name="myTimer",
+    run_on_startup=False,
+    use_monitor=False,
+)
+def extract_analista(myTimer: func.TimerRequest) -> None:
+    extract_table("analista")
+
+
+# 6. CATEGORIA
+
+
+@app.timer_trigger(
+    schedule="0 * * * * *",
+    arg_name="myTimer",
+    run_on_startup=False,
+    use_monitor=False,
+)
+def extract_categoria(myTimer: func.TimerRequest) -> None:
+    extract_table("categoria")
+
+
+# 7. AVALIAÇÃO CSAT
 
 
 @app.timer_trigger(
@@ -127,7 +209,7 @@ def extract_csat_avaliacao(myTimer: func.TimerRequest) -> None:
     extract_table("csat_avaliacao")
 
 
-# 2. FILA
+# 8. FILA
 
 
 @app.timer_trigger(
@@ -138,3 +220,29 @@ def extract_csat_avaliacao(myTimer: func.TimerRequest) -> None:
 )
 def extract_fila(myTimer: func.TimerRequest) -> None:
     extract_table("fila")
+
+
+# 9. SLA
+
+
+@app.timer_trigger(
+    schedule="0 * * * * *",
+    arg_name="myTimer",
+    run_on_startup=False,
+    use_monitor=False,
+)
+def extract_sla(myTimer: func.TimerRequest) -> None:
+    extract_table("sla")
+
+
+# 10. SOLICITANTE
+
+
+@app.timer_trigger(
+    schedule="0 * * * * *",
+    arg_name="myTimer",
+    run_on_startup=False,
+    use_monitor=False,
+)
+def extract_solicitante(myTimer: func.TimerRequest) -> None:
+    extract_table("solicitante")
