@@ -9,8 +9,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: python3 --version
-      - run: python3 -m py_compile function_app.py
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: python --version
+      - run: python -m py_compile function_app.py
 
       # Instalação das dependências de validação (ruff, black e isort)
       - name: Instalar ferramentas de lint e formatação
@@ -35,7 +38,7 @@ jobs:
       id-token: write
       contents: read
     env:
-      AZURE_FUNCTIONAPP_NAME: 'funcapp-taprc-emilly'
+      AZURE_FUNCTIONAPP_NAME: 'functapp-mariaeduarda0001'
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -50,4 +53,5 @@ jobs:
         with:
           app-name: ${{ env.AZURE_FUNCTIONAPP_NAME }}
           package: .
+          sku: flexconsumption
           remote-build: true
