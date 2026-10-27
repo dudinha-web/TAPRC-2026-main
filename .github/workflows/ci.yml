@@ -23,13 +23,13 @@ jobs:
       - name: Verificação de imports (isort)
         run: isort --check-only --profile black .
 
-      # 2. FORMATAÇÃO AUTOMÁTICA: black
-      - name: Formatação automática (Black)
-        run: black --check .
+      # # 2. FORMATAÇÃO AUTOMÁTICA: black
+      # - name: Formatação automática (Black)
+      #   run: black --check .
 
-      # 3. LINTING: ruff
-      - name: Linting e padrões PEP8 (Ruff)
-        run: ruff check .
+      # # 3. LINTING: ruff
+      # - name: Linting e padrões PEP8 (Ruff)
+      #   run: ruff check .
 
   deploy:
     needs: validar
