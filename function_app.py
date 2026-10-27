@@ -83,7 +83,7 @@ def extract_table(table_name: str) -> None:
         now = datetime.now(UTC)
 
         file_path = (
-            f"{table_name}/" f"{now:%Y/%m/%d}/" f"{table_name}_{now:%Y%m%d_%H%M%S}.csv"
+            f"itsm/{table_name}/" f"{now:%Y/%m/%d}/" f"{table_name}_{now:%Y%m%d_%H%M%S}.csv"
         )
 
         # 7. Conectar ao Azure Data Lake
