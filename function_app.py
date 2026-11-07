@@ -70,16 +70,14 @@ def load_datalake_to_sql(
     schema: str, table_name: str, run_date: date | None = None
 ) -> int:
     datalake_conn_str = os.getenv("DATALAKE_CONNECTION_STRING")
-    user_sql = os.getenv("DEST_USER") or os.getenv("USER")
-    database_sql = os.getenv("DEST_DATABASE") or os.getenv("DATABASE")
-    host_sql = os.getenv("DEST_HOST") or os.getenv("HOST")
-    password_sql = (os.getenv("DEST_PASSWORD") or os.getenv("PASSWORD") or "").replace(
-        "}", "}}"
-    )
+    user_sql = os.getenv("teste_USERNAME")
+    database_sql = os.getenv("teste_DATABASE")
+    host_sql = os.getenv("teste_HOST")
+    password_sql = (os.getenv("teste_PASSWORD") or "").replace("}", "}}")
 
     if not all([datalake_conn_str, user_sql, database_sql, host_sql, password_sql]):
         raise RuntimeError(
-            "Variáveis de ambiente ausentes (DATALAKE_CONNECTION_STRING, USER, DATABASE, HOST, PASSWORD)"
+            "Variáveis de ambiente ausentes (DATALAKE_CONNECTION_STRING, DEST_USER, DEST_DATABASE, DEST_HOST, DEST_PASSWORD)"
         )
 
     sql_conn_str = (
