@@ -10,7 +10,7 @@ from azure.core.exceptions import AzureError, ResourceNotFoundError
 from azure.storage.filedatalake import DataLakeServiceClient
 
 app = func.FunctionApp()
-logger = logging.getLogger(_name_)
+logger = logging.getLogger(__name__)
 
 
 def _table_metadata(cursor, schema: str, table_name: str):
